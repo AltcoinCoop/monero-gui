@@ -1,0 +1,21 @@
+[Unit]
+Description=Mynt Full Node
+After=network.target
+
+[Service]
+User=mynt
+Group=mynt
+WorkingDirectory=~
+RuntimeDirectory=mynt
+
+Type=forking
+PIDFile=/run/mynt/myntd.pid
+
+ExecStart=/usr/bin/myntd --config-file /etc/myntd.conf \
+    --detach --pidfile /run/mynt/myntd.pid
+
+Restart=always
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
